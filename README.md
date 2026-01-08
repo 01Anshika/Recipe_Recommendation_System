@@ -20,11 +20,14 @@ It allows users to get personalized recipe recommendations based on their select
    git clone https://github.com/01Anshika/Recipe_Recommendation_System.git
 2. Navigate to the project folder:
     cd Recipe_Recommendation_System
+
 3.Create and activate a virtual environment:
     python -m venv venv
     venv\Scripts\activate
+
 4.Install requirements (if any):
     pip install -r requirements.txt
+
 5.Run the server:
     python manage.py runserver
 

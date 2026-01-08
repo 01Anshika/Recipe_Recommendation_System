@@ -1,0 +1,41 @@
+{% extends 'recipe/base.html' %}
+{% load static %}
+
+{% block title %}Your Recipes Based on Ingredients{% endblock %}
+
+{% block content %}
+<section class="results-wrapper" style="min-height:80vh; padding:50px; background-image:url('{% static "images/home_bg.jpg" %}'); background-size:cover; background-position:center;">
+  <div class="results-card glass-medium" style="max-width:900px; margin:auto; padding:30px;">
+    <h2>Your Recipes Based on Ingredients</h2>
+    {% if request.session.ingredients %}
+      <p>Selected: {{ request.session.ingredients|join:", " }}</p>
+    {% endif %}
+
+    {% if results %}
+      <div class="recipe-list" style="display:flex; flex-direction:column; gap:20px; margin-top:20px;">
+        {% for r in results %}
+          <div class="recipe-item glass-light" style="padding:20px; border-radius:10px; background-color: rgba(0,0,0,0.5); color:white;">
+            <h3>{{ r.recipe.name }}</h3>
+            <span class="recipe-type" style="font-weight:bold; color:
+                {% if r.type == 'primary' %}#FFD700
+                {% elif r.type == 'common' %}#00FF00
+                {% else %}#FFFFFF
+                {% endif %};
+            ">
+              {{ r.type|capfirst }}
+            </span>
+            <p><strong>Ingredients:</strong> {{ r.ingredients_list|join:", " }}</p>
+            <p><strong>Cooking Time:</strong> {{ r.cooking_time }} minutes</p>
+            <p><strong>Instructions:</strong> {{ r.instructions }}</p>
+            {% if r.youtube %}
+              <p><a href="{{ r.youtube }}" target="_blank" style="color:#1E90FF; text-decoration:underline;">YouTube Video</a></p>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p style="color:#FFD700; font-weight:bold;">No recipes found for selected ingredients.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

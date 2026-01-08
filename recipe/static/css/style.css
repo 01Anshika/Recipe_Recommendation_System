@@ -1,0 +1,66 @@
+/* Navbar links */
+.vp-nav {
+  background: rgba(0,0,0,0.6);
+  padding: 10px 20px;
+}
+.vp-nav .nav-link {
+  color:#fff;
+  margin-left:15px;
+  text-decoration:none;
+}
+.vp-nav .nav-link:hover { color:#ffd700; transition:0.3s; }
+.vp-nav .brand { color:#ffd700; font-weight:bold; text-decoration:none; }
+
+/* Auth & Ingredient cards */
+.glass-medium {
+  background: rgba(0,0,0,0.6);
+  border-radius:15px;
+  padding:20px;
+  color:white;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+}
+
+/* Buttons */
+.btn {
+  padding:10px 15px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  text-decoration:none;
+}
+.vp-btn-primary {
+  background:#ffd700;
+  color:#000;
+}
+.vp-btn-primary:hover {
+  background:#e6c200;
+}
+.vp-btn-ghost {
+  background:transparent;
+  border:2px solid #ffd700;
+  color:#ffd700;
+}
+.vp-btn-ghost:hover {
+  background:#ffd700;
+  color:#000;
+  transition:0.3s;
+}
+
+/* Inputs */
+.vp-input {
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:none;
+  margin-bottom:10px;
+}
+
+/* Selected ingredient tags */
+.selected-item {
+  display:inline-block;
+  background:rgba(255,255,255,0.2);
+  padding:5px 10px;
+  margin:3px;
+  border-radius:8px;
+}

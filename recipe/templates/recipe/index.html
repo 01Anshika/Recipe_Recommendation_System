@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Home - KitchenBuddy{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body { margin:0; font-family: 'Arial', sans-serif; background:#121212; color:#fff; }
+        a { text-decoration:none; }
+        .glass-large { backdrop-filter: blur(15px); background: rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; }
+        .btn { padding:10px 25px; border-radius:8px; font-weight:bold; transition:0.3s; cursor:pointer; }
+        .vp-btn-primary { background:#ff9800; color:#fff; border:none; }
+        .vp-btn-primary:hover { background:#e68900; }
+        .vp-btn-secondary { background:rgba(255,255,255,0.2); color:#fff; border:none; }
+        .vp-btn-secondary:hover { background:rgba(255,255,255,0.35); }
+        header { display:flex; justify-content:space-between; align-items:center; padding:20px 50px; position:relative; z-index:2; }
+        header .logo { font-size:1.5rem; font-weight:bold; color:#ff9800; }
+        header .nav-links a { margin-left:15px; padding:8px 15px; border-radius:5px; font-weight:bold; }
+        header .nav-links a:hover { opacity:0.8; }
+        footer { text-align:center; padding:15px 0; background:#1a1a1a; color:#fff; margin-top:50px; font-size:0.9rem; }
+        .hero { position:relative; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; padding:50px; background-image: url('{% static "images/home_bg.jpg" %}'); background-size:cover; background-position:center; border-radius:20px; margin:20px; }
+        .hero-left { flex:1; min-width:300px; position:relative; z-index:2; color:#fff; }
+        .hero-right { flex:1; min-width:300px; display:flex; justify-content:center; position:relative; z-index:2; }
+        .hero-title { font-size:2.5rem; margin-bottom:15px; }
+        .hero-sub { font-size:1.1rem; line-height:1.5; }
+        .glass-preview { position:relative; width:300px; height:300px; }
+        .bubble { position:absolute; width:20px; height:20px; border-radius:50%; background:rgba(255,255,255,0.3); animation: float 6s infinite; }
+        .bubble-1 { top:10%; left:20%; animation-delay:0s; }
+        .bubble-2 { top:30%; left:70%; animation-delay:1s; }
+        .bubble-3 { top:60%; left:40%; animation-delay:2s; }
+        .bubble-4 { top:80%; left:60%; animation-delay:3s; }
+        .bubble-5 { top:50%; left:80%; animation-delay:4s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .hero-cta { display:flex; gap:15px; margin-top:20px; }
+        /* Dark overlay for hero */
+        .hero::before { content:""; position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); border-radius:20px; z-index:1; }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">KitchenBuddy</div>
+    <div class="nav-links">
+        <a href="{% url 'login' %}" class="vp-btn-secondary">Login</a>
+        <a href="{% url 'register' %}" class="vp-btn-primary">Register</a>
+    </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero vp-card glass-large">
+    <div class="hero-left">
+        <h1 class="hero-title">Whip Up Wonders from Your Pantry!</h1>
+        <p class="hero-sub">Turn everyday ingredients into delicious meals — explore, cook, and enjoy culinary magic with step-by-step guides and videos!</p>
+        <div class="hero-cta">
+            <a href="{% url 'ingredient_select' %}" class="btn vp-btn-primary btn-lg">Get Started</a>
+            <a href="{% url 'register' %}" class="btn vp-btn-secondary btn-lg">Create Account</a>
+        </div>
+    </div>
+    <div class="hero-right">
+        <div class="glass-preview">
+            <div class="bubble bubble-1"></div>
+            <div class="bubble bubble-2"></div>
+            <div class="bubble bubble-3"></div>
+            <div class="bubble bubble-4"></div>
+            <div class="bubble bubble-5"></div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    © KitchenBuddy • Built with ❤️
+</footer>
+
+</body>
+</html>

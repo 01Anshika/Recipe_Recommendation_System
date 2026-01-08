@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}KitchenBuddy{% endblock %}</title>
+
+  <!-- Normalize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
+  <!-- Custom UI CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{% static 'js/ingredient_select.js' %}"></script>
+
+  <style>
+    /* Prevent horizontal scroll */
+    html, body {
+      overflow-x: hidden;
+    }
+
+    /* Navbar fixes */
+    .vp-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      flex-wrap: wrap; /* responsive wrap */
+    }
+
+    .nav-right a {
+      padding: 8px 15px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      text-decoration: none;
+      margin-left: 10px;
+      white-space: nowrap; /* prevent wrapping text from breaking layout */
+    }
+
+    .vp-page-wrapper {
+      padding-top: 80px;
+      max-width: 100%; /* prevent content overflow */
+      box-sizing: border-box;
+    }
+
+    .vp-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px; /* some padding on sides */
+      box-sizing: border-box;
+    }
+
+    .vp-footer {
+      padding: 20px 0;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body class="vp-bg">
+
+  <!-- NAVIGATION -->
+  <nav class="vp-nav glass-small">
+    <div class="nav-left">
+      <a class="brand" href="{% url 'index' %}" style="font-weight:bold; font-size:1.5rem; color:#fff; text-decoration:none;">KitchenBuddy</a>
+    </div>
+    <div class="nav-right">
+      {% if user.is_authenticated %}
+        <a class="nav-link" href="{% url 'ingredient_select' %}">Select Ingredients</a>
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      {% else %}
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+        <a class="nav-link" href="{% url 'register' %}">Register</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- PAGE WRAPPER -->
+  <div class="vp-page-wrapper">
+    <main class="vp-container">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="vp-footer">
+    <small>© {{ now.year }} KitchenBuddy • Built with ❤️</small>
+  </footer>
+
+</body>
+</html>

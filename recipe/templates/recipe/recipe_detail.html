@@ -1,0 +1,30 @@
+{% extends 'recipe/base.html' %}
+{% block title %}{{ recipe.name }} - Recipe Details{% endblock %}
+
+{% block content %}
+<div class="recipe-detail-wrapper" style="padding:30px; max-width:800px; margin:auto;">
+    <h2>{{ recipe.name }}</h2>
+    <p><strong>Description:</strong> {{ recipe.description }}</p>
+    <p><strong>Ingredients:</strong> {{ recipe.clean_ingredients|join:", " }}</p>
+    {% if recipe.cook_time %}
+        <p><strong>Cook Time:</strong> {{ recipe.cook_time }} mins</p>
+    {% endif %}
+
+    <div class="instructions mt-3">
+        <h4>Step-by-step Instructions:</h4>
+        <p>{{ recipe.instructions|default:"Instructions not available."|linebreaksbr }}</p>
+    </div>
+
+    {% if recipe.youtube_query %}
+    <div class="video-wrap mt-3" style="text-align:center;">
+        <a href="https://www.youtube.com/results?search_query={{ recipe.youtube_query|urlencode }}" target="_blank">
+            <p style="color:#ffd700; margin-top:5px;">Search recipe video on YouTube</p>
+        </a>
+    </div>
+    {% endif %}
+
+    <div class="mt-4">
+        <a href="{% url 'results' %}" class="btn vp-btn-secondary">Back to Results</a>
+    </div>
+</div>
+{% endblock %}
